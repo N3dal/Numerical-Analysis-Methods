@@ -85,23 +85,25 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
         "iteration",
         "xl", "xu", "xa",
         "func(xl)", "func(xu)", "func(xa)",
-        "error"
+        "error (%)"
     )
 
     # initialization second.
     iter_count = 0
     error = 1.0
 
+    # print the equation and the upper-bound and the lower-bound.
+    print("Equation:", function)
+    print(f"xl = {xl}")
+    print(f"xu = {xu}")
+    print(f"tolerance: {tolerance}%")
+
+    # print the header table.
+    print(create_table_row(HEADER_DATA, max_length=20), end="")
+
     # third create our math function.
     func = math_eval(function)
 
-    # guard conditions.
-
-    # if func(xl) * func(xu) > 0:
-    #     print("Incorrect Initial guesses.")
-    #     return None
-
-    print(create_table_row(HEADER_DATA, max_length=20), end="")
     while (iter_count <= iteration and error >= tolerance):
 
         iter_count += 1
@@ -109,13 +111,17 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
         # xa => x-average.
         xa = (xl+xu) / 2
 
+        if func(xa) == 0:
+            # then xa is the root.
+            return xa
+
         if func(xl) * func(xa) < 0:
             xu = xa
 
         else:
             xl = xa
 
-        error = approximate_error(xa, error)
+        error = approximate_error(xu, xl)
 
         t = (iter_count, xl, xu, xa, func(xl),
              func(xu), func(xa), error)
@@ -128,7 +134,7 @@ def main():
     # wipe terminal.
     clear()
 
-    x = bisection("x^2-x-1", xl=1, xu=2, iteration=70, tolerance=3e-3)
+    x = bisection("x^2-x-1", xl=1, xu=2, iteration=29, tolerance=3e-3)
 
 
 if __name__ == "__main__":
