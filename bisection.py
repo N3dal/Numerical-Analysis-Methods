@@ -14,14 +14,14 @@ f(x) = 0
 
 """
 
-from defaults import clear
-from defaults import (approximate_error)
-from defaults import create_table_row
-from defaults import math_eval
+from tools import (clear,
+                   math_eval,
+                   approximate_error,
+                   create_table_row)
 
 
 def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, iteration: int = 100):
-    """"""
+    """return the most approximate root."""
 
     # first initialize header data:
     HEADER_DATA = (
@@ -47,7 +47,7 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
     # third create our math function.
     func = math_eval(function)
 
-    while (iter_count <= iteration and error >= tolerance):
+    while (iter_count < iteration or error >= tolerance):
 
         iter_count += 1
 
@@ -71,13 +71,18 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
 
         print(create_table_row(t, max_length=20), end="")
 
+    return xu
+
 
 def main():
 
     # wipe terminal.
     clear()
 
-    x = bisection("x^2-x-1", xl=1, xu=2, iteration=29, tolerance=3e-3)
+    x = bisection("x^2-x-1", xl=1, xu=2, tolerance=3e-3)
+
+    # now print the value that we want.
+    print(f"your most approximate root is: {x}")
 
 
 if __name__ == "__main__":
