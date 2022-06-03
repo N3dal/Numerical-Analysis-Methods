@@ -16,6 +16,7 @@ f(x) = 0
 
 from defaults import clear
 from defaults import (approximate_error)
+from defaults import create_table_row
 
 
 def math_eval(function: str, main_variable: str = "x"):
@@ -79,11 +80,19 @@ def math_eval(function: str, main_variable: str = "x"):
 def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, iteration: int = 100):
     """"""
 
-    # initialization first.
+    # first initialize header data:
+    HEADER_DATA = (
+        "iteration",
+        "xl", "xu", "xa",
+        "func(xl)", "func(xu)", "func(xa)",
+        "error"
+    )
+
+    # initialization second.
     iter_count = 0
     error = 1.0
 
-    # first create our math function.
+    # third create our math function.
     func = math_eval(function)
 
     # guard conditions.
@@ -92,7 +101,10 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
     #     print("Incorrect Initial guesses.")
     #     return None
 
+    print(create_table_row(HEADER_DATA, max_length=20), end="")
     while (iter_count <= iteration and error >= tolerance):
+
+        iter_count += 1
 
         # xa => x-average.
         xa = (xl+xu) / 2
@@ -103,12 +115,12 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
         else:
             xl = xa
 
-        iter_count += 1
-
         error = approximate_error(xa, error)
 
-        print(iter_count, xl, xu, xa, func(xl),
-              func(xu), func(xa), error,  sep="\t")
+        t = (iter_count, xl, xu, xa, func(xl),
+             func(xu), func(xa), error)
+
+        print(create_table_row(t, max_length=20), end="")
 
 
 def main():
@@ -116,9 +128,7 @@ def main():
     # wipe terminal.
     clear()
 
-    x = bisection("x^2-x-1", xl=1, xu=2, iteration=7, tolerance=3e-3)
-
-    # print(x)
+    x = bisection("x^2-x-1", xl=1, xu=2, iteration=70, tolerance=3e-3)
 
 
 if __name__ == "__main__":
