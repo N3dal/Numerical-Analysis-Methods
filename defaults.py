@@ -20,7 +20,7 @@ def clear():
 def approximate_error(current_approx: float, past_approx: float):
     """calculate approximate error value."""
 
-    return abs(current_approx-past_approx)/current_approx
+    return (abs(current_approx-past_approx)/current_approx) * 100
 
 
 def true_error(true_value: float, approx_value: float):
