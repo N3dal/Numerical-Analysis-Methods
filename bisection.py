@@ -1,6 +1,21 @@
 #!/usr/bin/python3
+"""
+The bisection method is an approximation method to find the roots,
+of the given equation by repeatedly dividing the interval.
+
+This method will divide the interval until the resulting,
+interval is found, which is extremely small.
+
+bisection method work for any continuous function f(x).
+
+all equation must equal to zero.
+f(x) = 0
+
+
+"""
 
 from defaults import clear
+from defaults import (approximate_error)
 
 
 def math_eval(function: str, main_variable: str = "x"):
@@ -56,7 +71,7 @@ def math_eval(function: str, main_variable: str = "x"):
         # contain other symbols or other variables.
         return None
 
-    function.replace("^", "**")
+    function = function.replace("^", "**")
 
     return lambda value: eval(function.replace(main_variable, str(value)))
 
@@ -68,9 +83,31 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
     iter_count = 0
     error = 1.0
 
+    # first create our math function.
+    func = math_eval(function)
+
+    # guard conditions.
+
+    # if func(xl) * func(xu) > 0:
+    #     print("Incorrect Initial guesses.")
+    #     return None
+
     while (iter_count <= nmax and error >= tolerance):
 
+        # xa => x-average.
+        xa = (xl+xu) / 2
+
+        if func(xl) * func(xa) < 0:
+            xu = xa
+
+        else:
+            xl = xa
+
         iter_count += 1
+
+        error = approximate_error(xa, error)
+
+        # print(iter_count, xl, xu, xa, func(xl), func(xu), func(xa), sep="\t")
 
 
 def main():
@@ -78,13 +115,9 @@ def main():
     # wipe terminal.
     clear()
 
-    f = math_eval("8-12*23- 2* -7")
+    x = bisection("x^2-3", xl=1, xu=2)
 
-    if f is None:
-        print("Error")
-
-    else:
-        print(f(3))
+    print(x)
 
 
 if __name__ == "__main__":
