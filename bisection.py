@@ -76,7 +76,7 @@ def math_eval(function: str, main_variable: str = "x"):
     return lambda value: eval(function.replace(main_variable, str(value)))
 
 
-def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, nmax: int = 100):
+def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, iteration: int = 100):
     """"""
 
     # initialization first.
@@ -92,7 +92,7 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
     #     print("Incorrect Initial guesses.")
     #     return None
 
-    while (iter_count <= nmax and error >= tolerance):
+    while (iter_count <= iteration and error >= tolerance):
 
         # xa => x-average.
         xa = (xl+xu) / 2
@@ -107,7 +107,8 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
 
         error = approximate_error(xa, error)
 
-        # print(iter_count, xl, xu, xa, func(xl), func(xu), func(xa), sep="\t")
+        print(iter_count, xl, xu, xa, func(xl),
+              func(xu), func(xa), error,  sep="\t")
 
 
 def main():
@@ -115,9 +116,9 @@ def main():
     # wipe terminal.
     clear()
 
-    x = bisection("x^2-3", xl=1, xu=2)
+    x = bisection("x^2-x-1", xl=1, xu=2, iteration=7, tolerance=3e-3)
 
-    print(x)
+    # print(x)
 
 
 if __name__ == "__main__":
