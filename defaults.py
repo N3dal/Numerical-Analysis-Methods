@@ -60,13 +60,13 @@ def create_table_row(data: tuple, max_length: int = None):
 
     data_separate_line = ("+" + "-"*MAX_LENGTH) * COLUMNS + "+\n"
 
-    row_data = "|" + "|".join(str(title).center(MAX_LENGTH)
-                              for title in data) + "|\n"
+    row_data = "|" + "|".join(str(cell_data)[:MAX_LENGTH].center(MAX_LENGTH)
+                              for cell_data in data) + "|\n"
 
     return data_separate_line + row_data + data_separate_line
 
 
-# data = "a", "b", "c", "d"
-# print(create_table_row(data), end="")
-# data = 1, 2, 3, 4
+data = "a", "bfdafgdafdafadfda", "c", "d"
+print(create_table_row(data, max_length=10), end="")
+data = 1, 2, 3, 4
 # print()
