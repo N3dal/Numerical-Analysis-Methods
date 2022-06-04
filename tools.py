@@ -3,6 +3,8 @@
 
 from os import name as OS_NAME
 from os import system
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def clear():
@@ -15,6 +17,9 @@ def clear():
     else:
         # for windows machines.
         system("cls")
+
+
+func_plot = plt.plot
 
 
 def math_eval(function: str, main_variable: str = "x"):
