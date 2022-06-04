@@ -19,10 +19,7 @@ def clear():
         system("cls")
 
 
-func_plot = plt.plot
-
-
-def math_eval(function: str, main_variable: str = "x"):
+def math_eval(math_function: str, main_variable: str = "x"):
     """return a math function that we can,
     evaluate.
 
@@ -55,29 +52,29 @@ def math_eval(function: str, main_variable: str = "x"):
     """
 
     # guard conditions.
-    if not function:
+    if not math_function:
         return None
 
-    # now make sure to lower the function case.
-    function = function.lower()
+    # now make sure to lower the math_function case.
+    math_function = math_function.lower()
 
     # and make sure to lower main variable.
     main_variable = main_variable.lower()
 
-    # the elements that we only want to be on our function.
+    # the elements that we only want to be on our math_function.
     ELEMENTS = (
         " ", "+", "-", "^", "/", "*", "(", ")", main_variable
     )
 
     if not all(element in ELEMENTS or element.isdecimal()
-               for element in function):
-        # if everything not ok and our function,
+               for element in math_function):
+        # if everything not ok and our math_function,
         # contain other symbols or other variables.
         return None
 
-    function = function.replace("^", "**")
+    math_function = math_function.replace("^", "**")
 
-    return lambda value: eval(function.replace(main_variable, str(value)))
+    return lambda value: eval(math_function.replace(main_variable, str(value)))
 
 
 def approximate_error(current_approx: float, past_approx: float):
@@ -129,7 +126,21 @@ def create_table_row(data: tuple, max_length: int = None):
     return data_separate_line + row_data + data_separate_line
 
 
-data = "a", "bfdafgdafdafadfda", "c", "d"
-print(create_table_row(data, max_length=10), end="")
-data = 1, 2, 3, 4
+# def func_plot(math_function: str):
+#     """plot math function on x/y axis."""
+
+#     func = math_eval(math_function)
+
+#     x_values = np.linspace(-100, 100)
+#     y_values = func(x_values)
+
+#     plt.plot(x_values, y_values)
+#     plt.show()
+
+
+# data = "a", "bfdafgdafdafadfda", "c", "d"
+# print(create_table_row(data, max_length=10), end="")
+# data = 1, 2, 3, 4
 # print()
+
+func_plot("x^2")
