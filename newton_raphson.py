@@ -1,0 +1,5 @@
+"""
+newton raphson method.
+"""
+
+
