@@ -138,9 +138,13 @@ def create_table_row(data: tuple, max_length: int = None):
 #     plt.show()
 
 
-# data = "a", "bfdafgdafdafadfda", "c", "d"
-# print(create_table_row(data, max_length=10), end="")
-# data = 1, 2, 3, 4
-# print()
+def main():
+    pass
+    # data = "a", "bfdafgdafdafadfda", "c", "d"
+    # print(create_table_row(data, max_length=10), end="")
+    # data = 1, 2, 3, 4
+    # print()
 
-func_plot("x^2")
+
+if __name__ == "__main__":
+    main()
