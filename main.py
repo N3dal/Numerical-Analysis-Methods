@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-from tools.Tools import clear
+from tools import Tools
 
 
 # wipe terminal.
-clear()
+Tools.clear()
