@@ -14,11 +14,7 @@ f(x) = 0
 
 """
 
-from tools.Tools import (clear,
-                         math_eval,
-                         approximate_error,
-                         create_table_row,
-                         plt)
+from tools import Tools
 
 
 def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, iteration: int = 100):
@@ -43,10 +39,10 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
     print(f"tolerance: {tolerance}%")
 
     # print the header table.
-    print(create_table_row(HEADER_DATA, max_length=20), end="")
+    print(Tools.create_table_row(HEADER_DATA, max_length=20), end="")
 
     # third create our math function.
-    func = math_eval(function)
+    func = Tools.math_eval(function)
 
     while (iter_count < iteration or error >= tolerance):
 
@@ -65,12 +61,12 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
         else:
             xl = xa
 
-        error = approximate_error(xu, xl)
+        error = Tools.approximate_error(xu, xl)
 
         t = (iter_count, xl, xu, xa, func(xl),
              func(xu), func(xa), error)
 
-        print(create_table_row(t, max_length=20), end="")
+        print(Tools.create_table_row(t, max_length=20), end="")
 
     return xu
 
@@ -78,7 +74,7 @@ def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: flo
 def main():
 
     # wipe terminal.
-    clear()
+    Tools.clear()
 
     x = bisection("x^2-x-1", xl=1, xu=2, tolerance=3e-3)
 
