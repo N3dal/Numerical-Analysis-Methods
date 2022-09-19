@@ -14,11 +14,11 @@ f(x) = 0
 
 """
 
-from tools import (clear,
-                   math_eval,
-                   approximate_error,
-                   create_table_row,
-                   plt)
+from tools.Tools import (clear,
+                         math_eval,
+                         approximate_error,
+                         create_table_row,
+                         plt)
 
 
 def bisection(function: str, tolerance: float = 1.e-10, xl: float = 1.0, xu: float = 2.0, iteration: int = 100):
@@ -84,7 +84,6 @@ def main():
 
     # now print the value that we want.
     print(f"your most approximate root is: {x}")
-
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ newton raphson method.
 """
 
 
-from tools import (clear,
+from tools.Tools import (clear,
                    math_eval,
                    approximate_error,
                    create_table_row,
