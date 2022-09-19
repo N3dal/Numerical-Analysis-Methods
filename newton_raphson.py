@@ -24,8 +24,7 @@ def newton_raphson(math_function: str, function_derivative: str, x0: int, iterat
     xn
 
     while iter_count < iteration or error < tolerance:
-
-        
+        pass
 
 
 def main():
