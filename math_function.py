@@ -29,7 +29,7 @@ class MathFunction:
         # get all the function variables;
         self.math_function_variables = self.__function_variables()
 
-    def eval(self, variable=None):
+    def eval(self, variable_value=None):
         """
             evaluate the math-function with the given "variable";
 
@@ -46,8 +46,11 @@ class MathFunction:
         """
 
         return [var for var in self.math_function if var.isalpha()]
-    
 
+    def __call__(self, variable_value):
+        """"""
+
+        return self.eval(variable_value)
 
 
 fx = MathFunction("2x+3")
