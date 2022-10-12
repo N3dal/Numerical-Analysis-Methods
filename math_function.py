@@ -33,7 +33,6 @@ class MathFunction:
         """
             evaluate the math-function with the given "variable";
 
-
             return number;
         """
 
