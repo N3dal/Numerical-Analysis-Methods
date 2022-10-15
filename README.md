@@ -3,6 +3,6 @@
 
 
 just a collection of common **Numerical-Analysis Methods** using different programming languages:
-- python.
-- matlab.
-- c++.
+- [python](./python/).
+- [matlab](./matlab/).
+- [c++](./cpp/).
