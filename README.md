@@ -1,5 +1,5 @@
 # Numerical Analysis Methods
-<p>
+<p align="center">
 <img src="./assets/picture01.gif" />
 </p>
 
